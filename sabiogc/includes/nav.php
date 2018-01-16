@@ -7,6 +7,7 @@ if ($_SESSION['perfil'] == "admin") {
 						<ul class=\"nav navbar-nav\">
 							<li><a href=\"./index.php?page=preguntas\">Preguntas</a></li>
 							<li><a href=\"./index.php?page=categoria\">Categorías</a></li>
+							<li><a href=\"./index.php?page=familias\">Familias</a></li>
 							<li><a href=\"./index.php?page=expertos\">Expertos</a></li>
 							<li><a href=\"./funciones/cerrarSesion.php\"><span class=\"glyphicon glyphicon-log-out\"></span> Salir</a></li>
 						</ul>
