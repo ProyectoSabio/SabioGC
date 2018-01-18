@@ -102,8 +102,6 @@ input[type="button"]:hover{
 }
 
 .fila{
-	display: flex;
-	flex-flow: row;
 	margin: 0 auto;
 	margin-top: 20px;
 }
@@ -114,6 +112,7 @@ input[type="button"]:hover{
 
 .fila select{
 	width: 50%;
+	margin-left: 20px;
 }
 
 

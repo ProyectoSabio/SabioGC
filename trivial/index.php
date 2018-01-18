@@ -12,12 +12,26 @@
 	<title>Configuracion</title>
 </head>
 <body>
+	<?php
+		require_once './class/Preguntas.php';
+		$preguntas = new Preguntas();
+		$familias = $preguntas->getFamilias();
+	?>
 	<div id="formulario" class="card">
 		<h2>Una pregunta en la Mochila</h2>
 		<form action="juego.php" method="post">
 				
 				<div class="fila">
 					<input type="text" name="rondas" id="rondas" placeholder="Nº- Rondas"><span id="rondaS"></span>
+					<select name="familias" id="familias">
+						<option value="">Familias de preguntas</option> 
+						<option value="">Todas las familias</option>
+						<?php
+							foreach($familias as $familia){
+								echo "<option value=".$familia['familia'].">".$familia['familia']."</option>";
+							}
+						?>
+					</select>
 					<select name="numJugadores" id="numJugadores">
 									<option value="">Nº- jugadores</option>
 						<?php
@@ -34,9 +48,3 @@
 			
 		</form>
 	</div>
-	
-</body>
-</html>
-
-
-

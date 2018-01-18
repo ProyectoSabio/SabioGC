@@ -17,7 +17,16 @@ public function __construct()
             die();
         }
     }
+    /* Devuelve todas las familias */
+public function getFamilias(){
+	try{
+			$sql = "SELECT familia FROM familias";
+			$resultado = $this->conexion->query($sql); // Lanzamos consulta
+			return $resultado;
+	}catch(PDOException $e){
 
+	}
+}
 public function getCategorias($categorias="")
 {
 	try{
@@ -44,13 +53,13 @@ public function getPreguntas($categoria="")
 	$arrayValores = array();// Valores que corresponden a los índices anteriores.
 	$arrayPreguntas = array(); // Preguntas devueltas. Array indexado asociativo.
 	try {
-	    if ($categoria =="") {   
+	    if ($categorias =="") {   
 			$sqlp = "Select * from preguntas where trash = 0"; // Sin categoría carga todas las preguntas
 			
 		}
 		else {
-		   $sqlp = "Select * from preguntas where trash = 0 and categoria=:patronP"; //Consulta filtrada
-		   $parametros['patronP']=$categoria;
+		   $sqlp = "Select * from preguntas where trash = 0 and categorias=:patronP"; //Consulta filtrada
+		   $parametros['patronP']=$categorias;
 
 		}
 		$sqlr = "Select * from respuestas where trash = 0 and idPregunta=:patronR";  //Consulta para recuperar respuestas
