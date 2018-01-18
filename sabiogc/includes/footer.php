@@ -3,7 +3,7 @@
 			<div class=\"container\">
 				<hr>
 				<footer>
-					<p>&copy; Desarrollo de Aplicaciones Web 2015. Propiedad de Elisa Navarro Zuara</p>
+					<p>&copy; Desarrollo de Aplicaciones Web 2018. Pablo León, Nieves Borrero y Victor Sevillano</p>
 				</footer>
 			</div>
 			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
