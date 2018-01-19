@@ -133,6 +133,22 @@ class ModelExperto
 		return $result;
 	}
 
+	public function updExpertoToken($oldExperto) {
+		$token = bin2hex(random_bytes(8));
+		$caducidad = date("Y-m-d H:i:s", strtotime(tomorrow));
+		try {
+			$sql = 'UPDATE `expertos` SET `token`=:token,`caducidadToken`=:caducidadToken WHERE `usuario` = :oldUsuario';
+			$query = $this->_mngDB->prepare($sql);
+			$query->bindParam('token', $token);
+			$query->bindParam('oldUsuario', $oldExperto);
+			$query->bindParam('caducidadToken', $caducidad);
+			$result = $query->execute();
+			$this->_mngDB = null;
+		} catch (PDOException $e) {
+			$e->getMessage();
+		}
+		return $result;
+	}
 	//Función para asignar las categorías a un experto
 	public function asignarCategorias($usuario, $categorias) {
 		try {
