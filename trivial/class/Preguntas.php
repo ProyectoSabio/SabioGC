@@ -27,26 +27,37 @@ public function getFamilias(){
 
 	}
 }
-public function getCategorias($categorias="")
-{
+
+
+public function getCategorias($familia){
+	$parametros = array();
+	$parametros['familia'] = $familia;
 	try{
-		if ($categorias == "") {
+		if ($familia == "") {
 			$sql = "SELECT * FROM categorias";
 			$resultado = $this->conexion->query($sql); // Lanzamos consulta
 			return $resultado;
-
+		}else{
+			$sql = "SELECT * FROM categorias where categorias.familia=:familia";
+			$resultado = $this->conexion->query($sql, $parametros); // Lanzamos consulta
+			return $resultado;
 		}
 	}catch(PDOException $e){
 
 	}
+
+
 }
+
+/* $sqlp = "Select * from preguntas, categorias where categorias.familia=:patronP
+  and preguntas.categoria = categorias.categoria  and preguntas.trash = 0";//Consulta filtrada */
 
 /* Recibe como parámetro opcional categoría.
 Devuelve array con preguntas y respuestas asociadas.
 LLamada sin parametro devuelve todas
 Con parámetro filtra la categoría.
 */
-public function getPreguntas($categoria="") 
+public function getPreguntas($categoria="")  
 {
     $parametros = array();  // Parametros.
 	$arrayClaves = array(); // Indices para el array asociativo de cada pregunta
@@ -103,9 +114,9 @@ public function getPreguntas($categoria="")
 		return false;
 	}
 }
-	function generarCategoriasPreguntas($listaCategorias,$arrayPreguntas){
+	function generarCategoriasPreguntas($familia,$listaCategorias,$arrayPreguntas){
 		if (empty($listaCategorias)) {
-			$arrayResultado = $this->getCategorias();
+			$arrayResultado = $this->getCategorias($familia);
 
 
 			foreach ($arrayResultado as $key => $value) {
