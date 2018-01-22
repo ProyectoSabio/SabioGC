@@ -24,7 +24,6 @@
 				<div class="fila">
 					<input type="text" name="rondas" id="rondas" placeholder="Nº- Rondas"><span id="rondaS"></span>
 					<select name="familias" id="familias">
-						<option value="">Familias de preguntas</option> 
 						<option value="">Todas las familias</option>
 						<?php
 							foreach($familias as $familia){

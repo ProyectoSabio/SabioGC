@@ -64,13 +64,13 @@ public function getPreguntas($categoria="")
 	$arrayValores = array();// Valores que corresponden a los índices anteriores.
 	$arrayPreguntas = array(); // Preguntas devueltas. Array indexado asociativo.
 	try {
-	    if ($categorias =="") {   
+	    if ($categoria =="") {   
 			$sqlp = "Select * from preguntas where trash = 0"; // Sin categoría carga todas las preguntas
 			
 		}
 		else {
-		   $sqlp = "Select * from preguntas where trash = 0 and categorias=:patronP"; //Consulta filtrada
-		   $parametros['patronP']=$categorias;
+		   $sqlp = "Select * from preguntas where trash = 0 and categoria=:patronP"; //Consulta filtrada
+		   $parametros['patronP']=$categoria;
 
 		}
 		$sqlr = "Select * from respuestas where trash = 0 and idPregunta=:patronR";  //Consulta para recuperar respuestas
