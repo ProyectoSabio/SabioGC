@@ -36,7 +36,8 @@ foreach ($esqueletoXML->config->categorias->categoria as  $value) {
 
 
 
-$opciones = $pregunta->generarCategoriasPreguntas($_POST['familias'], $listaCategorias,$arrayPreguntas);
+$opciones = $pregunta->generarCategoriasPreguntas($_SESSION['juego'][0]['familia'], $listaCategorias,$arrayPreguntas);
+
 if (empty($listaCategorias)) {
 	$listaCategorias = $opciones[0];
 	$arrayPreguntas = $opciones[1];

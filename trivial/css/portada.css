@@ -12,7 +12,7 @@ body h2{
 	padding: 0px;
 }
 
-#formulario{	
+#formulario, #formJuegos{	
 	margin: 10% auto;
 	text-align: center;
 	background-color: #EFEFEF;
@@ -115,5 +115,13 @@ input[type="button"]:hover{
 	margin-left: 20px;
 }
 
-
-
+.games{
+	display:inline-block;
+	margin: 20px;
+	padding:20px;
+	width: 20%;
+	height:20%;
+	border: 1px solid #fc0808;
+	background-color: #d60808;
+	color: #f4f4f4;
+}

@@ -1,7 +1,9 @@
 <?php
+session_start();
   if (!isset($_POST['jugadores'])) {
     header('Location: ./index.php');
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -135,4 +135,17 @@ public function getPreguntas($categoria="")
 			return $arrayPreguntas;
 		}
 	}
+	/**
+	 * Devuelve los datos del juego
+	 */
+	function getJuego($familia){
+		try{
+			$sql = "SELECT * FROM juego where juego.familia=:familia";
+			$parametros['familia']=$familia;
+			$resultado = $this->conexion->query($sql, $parametros); // Lanzamos consulta
+			return $resultado;
+		}catch(Exception $e){
+			$e->getMessage();
+		}	
+	}
 }

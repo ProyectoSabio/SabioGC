@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function ejecutarRuleta(i) {
-		if (i < 70) {
+		if (i < 70) {  //Comprobar esto <<<<<<<<<< Huele a trampa
 			i++;
 			categoriaRuleta = categorias[Math.floor(i % categorias.length)];
 			ruleta.innerHTML = categoriaRuleta;
