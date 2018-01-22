@@ -34,12 +34,18 @@ if (isset($_GET['accion'])) {
 		$usuario = $experto[0]['usuario'];
 		$password = $experto[0]['password'];
 		$email = $experto[0]['email'];
+		$estado = $experto[0]['estado'];
 		$_SESSION['modExperto'] = $_GET['usuario'];
 		$accion = "Editar experto";
 		$btn = "editar";
 	} else if ($_GET['accion'] == "eliminar") {
 		$objExperto = new ModelExperto();
 		$objExperto->delExperto($_GET['usuario']);
+		$objExperto = null;
+		header("Location: ./index.php?page=expertos");
+	} else if ($_GET['accion'] == "validarExp") {
+		$objExperto = new ModelExperto();
+		$objExperto->validaExperto($_GET['usuario']);
 		$objExperto = null;
 		header("Location: ./index.php?page=expertos");
 	} else if ($_GET['accion'] == "annadir") {
@@ -107,7 +113,11 @@ if (!isset($_GET['accion'])) {
 				  	echo "<li>".$value1."</li>";
 				  }
 			echo "</ul></td>";
-			echo "<td><a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a></td>";
+			echo "<td><a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a>"; 
+			if ($value['estado'] != 'validado') {
+			echo " <a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=validarExp\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-ok\"></span> Validar</a>";
+			}
+			echo "</td>";
 			echo "</tr>";
 		}
 		echo "</table>";
@@ -144,6 +154,7 @@ if (isset($_GET['accion']) && ($_GET['accion'] == "annadir" || $_GET['accion'] =
 			<input type=\"text\" class=\"form form-control\" name=\"email\" value=\"".$email."\" placeholder=\"Email\">
 			<span class=\"error\">".$emailError."</span>
 		  </p>";
+
 	$categoria = new ModelCategoria();
 	$listaCategorias = $categoria->getCategorias();
 	$categoria = null;
