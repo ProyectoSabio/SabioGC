@@ -38,7 +38,7 @@ class ModelExperto
 	public function getExperto($usuario) {
 		$result = false;
 		try {
-			$sql = 'SELECT `id`, `nombre`, `usuario`, `password`, `email` FROM `expertos` WHERE `usuario` = :usuario';
+			$sql = 'SELECT `id`, `nombre`, `usuario`, `password`, `email`, `estado` FROM `expertos` WHERE `usuario` = :usuario';
 			$query = $this->_mngDB->prepare($sql);
 			$query->bindParam('usuario', $usuario);
 			$query->execute();
@@ -244,7 +244,7 @@ class ModelExperto
 	public function buscarExpertos($patron) {
 		$result = false;
 		try {
-			$sql = "SELECT `id`, `nombre`, `usuario`, `password`, `email` FROM `expertos` WHERE `nombre` LIKE '%$patron%' ORDER BY `nombre` ASC";
+			$sql = "SELECT `id`, `nombre`, `usuario`, `password`, `email`, `estado` FROM `expertos` WHERE `nombre` LIKE '%$patron%' ORDER BY `nombre` ASC";
 			$query = $this->_mngDB->prepare($sql);
 			$query->execute();
 			$resultado = $query->fetchAll(PDO::FETCH_ASSOC);
