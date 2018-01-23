@@ -19,35 +19,36 @@ session_start();
 	<?php
 		require_once './class/Preguntas.php';
 		$preguntas = new Preguntas();
-		
+
 		if(!isset($_GET)){
 			header('Location:index.php');
 		}else{
 			$_SESSION['juego'] = $preguntas->getJuego($_GET['juego']);
+			//sacar numero de preguntas
 		}
-		
+
 	?>
 	<div id="formulario" class="card">
 		<h2>Una pregunta en la Mochila</h2>
 		<form action="juego.php" method="post">
-				
+
 				<div class="fila">
 					<input type="text" name="rondas" id="rondas" placeholder="Nº- Rondas"><span id="rondaS"></span>
 
 					<select name="numJugadores" id="numJugadores">
 									<option value="">Nº- jugadores</option>
 						<?php
-							for ($i=1; $i <4 ; $i++) { 
+							for ($i=1; $i <4 ; $i++) {
 								echo "<option value=".($i+1).">".($i+1)."</option>";
 							}
 						?>
 					</select>
 				</div>
 				<div id="jugadores">
-					
+
 				</div>
 				<input  type="button" value="Jugar" id="jugar" name="jugar">
-			
+
 		</form>
 	</div>
 <?php

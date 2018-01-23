@@ -14,6 +14,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
 	var jugadores = document.getElementsByName('jugadores[]') || undefined;
 	var btn = document.getElementById('jugar');
 
+	rondas.addEventListener('change',comprobarPreguntas);
+	numJugadores.addEventListener('change',comprobarPreguntas);
 	btn.addEventListener('click',function(e){
 		e.preventDefault();
 		if (validar()) {
@@ -25,9 +27,21 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		while (bloqueJugadores.childNodes.length >= 1 ){
 			bloqueJugadores.removeChild(bloqueJugadores.firstChild );
 		}
-
 		crearInputs();
 	});
+
+	/**
+	* comprueba si existen suficientes preguntas para el número de rondas y jugadores seleccionado
+	*/
+	function comprobarPreguntas(){
+		if((rondas.value * selectPlayer.value)>40){
+			rondas.style.borderBottom = "1px solid red";
+			spanRondas.innerHTML ="no hay suficientes preguntas";
+		}else{
+			rondas.style.borderBottom = "1px solid gray";
+			spanRondas.innerHTML ="";
+		}
+	}
 
 	function crearInputs(){
 		for (var i = 0; i < selectPlayer.value; i++) {
@@ -63,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			return false;
 		}
 		spanRondas.innerHTML = "";
-		return true;			
+		return true;
 	}
 
 	function validarNombreEquipo(value){
