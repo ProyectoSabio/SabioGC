@@ -66,6 +66,7 @@ if (isset($_POST['annadir']) || isset($_POST['editar'])) {
 	} else if (isset($_POST['editar'])) {
 		if (!$errorN && !$errorU && !$errorP && !$errorPR && !$errorE && !$errorC) {
 			$objExperto = new ModelExperto();
+
 			$objExperto->updExperto($_SESSION['modExperto'], array('nombre'=>$nombre,'usuario'=>$usuario,'password'=>$password,'email'=>$email), $categorias);
 			$objExperto = null;
 			header('Location: ./index.php?page=expertos');
