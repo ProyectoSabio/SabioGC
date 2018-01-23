@@ -1,7 +1,7 @@
 <?php
 session_start();
   if (!isset($_POST['jugadores'])) {
-    header('Location: ./index.php');
+    header('Location: ./configuracionJuego.php');
   }
 
 ?>
@@ -50,10 +50,12 @@ session_start();
        <!-- <div id="mapa"><img src="./img/espana2.png" alt="Mapa de España"></div>-->
         <!-- Modal Trigger -->
         <!-- Modal Structure -->
-
-        <div id="modal1" class="modal">
+        
+        <div id="modal1" class="modal"> <!--Div con pregunta-->
+        <form action="juego.php" method="post" accept-charset="utf-8">      
           <div class="modal-content">
             <h4 id="titulo"></h4>
+            <input type="button" id="anular" value="Anular">
             <div id="objeto" class="objeto"></div>
             <ul class="respuestas">
               <?php 
@@ -62,7 +64,9 @@ session_start();
                 }
                 ?>
             </ul>
+            <input type="button" id="siguiente" value="Siguiente">
           </div>
+         </form>
         </div>
 
         <div id="modal2" class="modal">
