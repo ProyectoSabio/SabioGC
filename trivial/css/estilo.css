@@ -251,7 +251,7 @@ body .findePagina button{
 }
 
 #anular, #siguiente{
-  display: none;
+  display: none; /**/
 }
 
 
