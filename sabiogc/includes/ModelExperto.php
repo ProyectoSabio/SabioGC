@@ -3,7 +3,7 @@ require_once "ConnectDB.php";
 class ModelExperto
 {
 	private $_mngDB;
-	
+
 	public function __construct() {
 		try {
 			$conexion = new ConnectDB();
@@ -13,8 +13,7 @@ class ModelExperto
 			die();
 		}
 	}
-	
-	
+
 	
 	//Función que devuelve todos los expertos
 	public function getExpertos() {
@@ -33,7 +32,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	//Función que devuelve un experto
 	public function getExperto($usuario) {
 		$result = false;
@@ -52,7 +51,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	//Función que devuelve las categorías de un experto
 	public function getCategoriaExperto($id) {
 		$result = false;
@@ -68,7 +67,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	//Función para eliminar un experto
 	public function delExperto($usuario) {
 		$result = false;
@@ -87,7 +86,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	//Función para validar un experto
 	public function validaExperto($usuario) {
 		try {
@@ -104,7 +103,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	//Función para insertar un experto
 	public function insExperto($valores, $categorias) {
 		try {
@@ -132,7 +131,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	//Función para editar un experto
 	public function updExperto($oldExperto, $valores, $categorias) {
 		try {
@@ -151,7 +150,7 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 	public function updExpertoToken($oldExperto) {
 		$token = bin2hex(random_bytes(8));
 		$caducidad = date("Y-m-d H:i:s", strtotime(tomorrow));
@@ -215,7 +214,7 @@ class ModelExperto
 			$e->getMessage();
 		}
 	}
-	
+
 	//Función que devuelve un experto
 	public function mostrarExpertos($resultado) {
 		try {
@@ -239,7 +238,7 @@ class ModelExperto
 		}
 		return $listaExpertos;
 	}
-	
+
 	//Función para la búsqueda de expertos
 	public function buscarExpertos($patron) {
 		$result = false;
@@ -257,5 +256,5 @@ class ModelExperto
 		}
 		return $result;
 	}
-	
+
 }
