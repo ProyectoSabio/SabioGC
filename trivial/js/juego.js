@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	var clickado;
 	var botonJugar = document.getElementById('jugar');
 	var ruleta = document.getElementById('ruleta');
+	var btnAnular = document.getElementById("anular");
+	var btnSiguiente = document.getElementById("siguiente");
 	//asignacion de evento click
 	for (var i = 0; i < botones.length; i++) {
 		botones[i].addEventListener("click", comprobar);
@@ -32,6 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	//Inicio del juego
 
+	btnAnular.addEventListener('click', pedirPasswd);
+
 	$("#inicial").openModal({
 		dismissible: false, // Modal can be dismissed by clicking outside of the modal
 		opacity: .5, // Opacity of modal background
@@ -41,6 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
 		complete: function() {} // Callback for Modal close);
 
 	});
+
+	function pedirPasswd(){
+		$("#modal3").openModal({
+			dismissible: false, // Modal can be dismissed by clicking outside of the modal
+			opacity: .5, // Opacity of modal background
+			in_duration: 300, // Transition in duration
+			out_duration: 200, // Transition out duration
+			ready: function() {}, // Callback for Modal open
+			complete: function() {
+					
+				} // Callback for Modal close);
+
+		});
+	}
 
 	function ejecutarJuego() {
 		marcarJugador();
@@ -194,8 +212,12 @@ document.addEventListener('DOMContentLoaded', function() {
 				setTimeout(revisarPreguntas, 3000);
 
 			}
+			btnAnular.style = "display: block;";
+			btnSiguiente.style = "display: block;";
 		};
+
 	}
+
 
 	function revisarPreguntas() {
 		if (preguntasTotales > 0) {
