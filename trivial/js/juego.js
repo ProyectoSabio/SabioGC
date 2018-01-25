@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	btnAnular.addEventListener('click', pedirPasswd);
 
+	btnSiguiente.addEventListener('click', siguientePregunta);
+
 	$("#inicial").openModal({
 		dismissible: false, // Modal can be dismissed by clicking outside of the modal
 		opacity: .5, // Opacity of modal background
@@ -58,6 +60,13 @@ document.addEventListener('DOMContentLoaded', function() {
 				} // Callback for Modal close);
 
 		});
+	}
+
+	function siguientePregunta(){	
+		$("#modal1").closeModal();	
+		setTimeout(ejecutarJuego, 1500);
+		btnAnular.style = "display: none;";
+		this.style = "display: none;"; // botón del evento: btnSiguiente
 	}
 
 	function ejecutarJuego() {
@@ -227,8 +236,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			} else {
 				player++;
 			}
-			$("#modal1").closeModal();
-			setTimeout(ejecutarJuego, 1500);
 		} else {
 			$("#modal1").closeModal();
 			$("#modal2").openModal({
