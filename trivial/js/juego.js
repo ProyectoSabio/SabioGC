@@ -61,7 +61,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		});
 	}
-
+	/**
+	 * Cierra la ventana e inicia la ruleta de nuevo
+	 */
 	function siguientePregunta(){	
 		$("#modal1").closeModal();	
 		setTimeout(ejecutarJuego, 1500);
