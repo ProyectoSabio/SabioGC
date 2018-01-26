@@ -1,7 +1,6 @@
 <?php
 require_once "ConnectDB.php";
-class ModelCategoria
-{
+class ModelCategoria{
 	private $_mngDB;
 
 	public function __construct() {
@@ -14,7 +13,7 @@ class ModelCategoria
 		}
 	}
 
-	//Devuelve el número total de columnas
+	/*Devuelve el número total de columnas*/
 	public function numCategorias() {
 		$result = false;
 		try {

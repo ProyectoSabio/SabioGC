@@ -8,9 +8,6 @@ if (!isset($_SESSION['modCategoria'])) {
 
 require_once "./includes/ModelCategoria.php";
 require_once "./funciones/limpiarCadena.php";
-//require_once '../trivial/class/Preguntas.php';
-//$preguntas = new Preguntas();
-//$familias = $preguntas->getFamilias();
 echo "<script src=\"./js/searchCat.js\"></script>";
 
 $error = false;
