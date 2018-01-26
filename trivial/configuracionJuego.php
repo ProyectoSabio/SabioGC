@@ -28,7 +28,7 @@ session_start();
 		}
 
 	?>
-	<div id="formulario" class="card">
+	<div id="formulario" class="card"><!---->
 		<h2>Una pregunta en la Mochila</h2>
 		<form action="juego.php" method="post">
 

@@ -12,9 +12,9 @@
 </head>
 <body>
 	<?php
-		require_once './class/Preguntas.php';
+		require_once './class/Preguntas.php'; 
 		$preguntas = new Preguntas();
-		$familias = $preguntas->getFamilias();
+		$familias = $preguntas->getFamilias(); // 
 	?>
 	<div id="formJuegos" class="card">
 		<h2>Juegos</h2>

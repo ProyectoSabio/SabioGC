@@ -53,19 +53,19 @@ session_start();
         
         <div id="modal1" class="modal"> <!--Div con pregunta-->
         <form action="juego.php" method="post" accept-charset="utf-8">      
-          <div class="modal-content">
-            <h4 id="titulo"></h4>
-            <input type="button" id="anular" value="Anular">
-            <div id="objeto" class="objeto"></div>
-            <ul class="respuestas">
-              <?php 
-                for ($i = 0; $i<NRESPUESTAS;$i++){
-                 echo"<a  href='' ><li name='resp'></li></a>";
-                }
-                ?>
-            </ul>
-            <input type="button" id="siguiente" value="Siguiente">
-          </div>
+	          <div class="modal-content">
+		            <h4 id="titulo"></h4>
+		            <input type="button" id="anular" value="Anular">
+		            <div id="objeto" class="objeto"></div>
+		            <ul class="respuestas">
+		              <?php 
+		                for ($i = 0; $i<NRESPUESTAS;$i++){
+		                 echo"<a  href='' ><li name='resp'></li></a>";
+		                }
+		                ?>
+		            </ul>
+		            <input type="button" id="siguiente" value="Siguiente">
+	          </div>
          </form>
         </div>
 
@@ -84,6 +84,15 @@ session_start();
               </footer>
             </div>
           </div>
+        </div>
+
+        <div id="modal3" class=modal>
+        	<div class="modal-content">
+        		<form action="./juego.php" method="post" accept-charset="utf-8">
+        			<label>Contraseña del juego<input type="password"></input></label>    
+        			<input type="button" id="enviar" value="enviar"> 			
+        		</form>
+        	</div>
         </div>
 
 

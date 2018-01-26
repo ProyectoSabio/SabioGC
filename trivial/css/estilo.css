@@ -250,6 +250,10 @@ body .findePagina button{
   color: black;
 }
 
+#anular, #siguiente{
+  display: none; /**/
+}
+
 
 
 
