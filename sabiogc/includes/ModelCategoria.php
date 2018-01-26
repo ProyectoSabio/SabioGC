@@ -1,6 +1,6 @@
 <?php
 require_once "ConnectDB.php";
-class ModelCategoria 
+class ModelCategoria
 {
 	private $_mngDB;
 
@@ -91,11 +91,12 @@ class ModelCategoria
 	}
 
 	//Función para insertar una categoria
-	public function insCategoria($valores) { //Recibe como parámetro un array de valores
+	public function insCategoria($valores, $familia='random') { //Recibe como parámetro un array de valores
 		try {
-			$sql = 'INSERT INTO `categorias`(`categoria`) VALUES (:categoria)';
+			$sql = 'INSERT INTO `categorias`(`categoria`, `familia`) VALUES (:categoria, :familia)';
 			$query = $this->_mngDB->prepare($sql);
 			$query->bindParam('categoria', $valores['categoria']);
+			$query->bindParam('familia', $familia);
 			$result = $query->execute();
 			$this->_mngDB = null;
 		} catch (PDOException $e) {

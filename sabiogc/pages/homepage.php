@@ -58,6 +58,7 @@ echo "	<div class=\"form-group\">
 			<input type=\"password\" class=\"form-control\" name=\"password\" placeholder=\"Contraseña\">
 		</div>
 		<input type=\"submit\" class=\"btn btn-primary\" name=\"login\" value=\"Iniciar sesión\"><br />
+<a href='./index.php?page=registroExpertos'>Registro?</a> |
 <a href='./index.php?page=recuperaPassword'>¿Olvidaste la contraseña?</a>
 	</div>
 	</form>";

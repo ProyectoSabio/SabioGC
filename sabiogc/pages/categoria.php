@@ -1,4 +1,5 @@
 <?php
+
 if ($_SESSION['perfil'] != "admin")
 	header("Location: ./index.php");
 if (!isset($_SESSION['modCategoria'])) {
@@ -7,7 +8,9 @@ if (!isset($_SESSION['modCategoria'])) {
 
 require_once "./includes/ModelCategoria.php";
 require_once "./funciones/limpiarCadena.php";
-
+//require_once '../trivial/class/Preguntas.php';
+//$preguntas = new Preguntas();
+//$familias = $preguntas->getFamilias();
 echo "<script src=\"./js/searchCat.js\"></script>";
 
 $error = false;
@@ -125,8 +128,15 @@ if (isset($_GET['accion']) && ($_GET['accion'] == "annadir" || $_GET['accion'] =
 	echo "<h3>" . $accion . "</h3>";
 	echo "<p>
 			<label>Categoría</label>
-			<input type=\"text\" class=\"form-control\" name=\"categoria\" value=\"".$nuevaCategoria."\" placeholder=\"Ej. Deportes\">
-			<span class=\"error\">".$msgError."</span>
+			<input type=\"text\" class=\"form-control\" name=\"categoria\" value=\"".$nuevaCategoria."\" placeholder=\"Ej. Deportes\">";
+			if($_GET['accion'] == "annadir"){
+				echo "<select>";
+				foreach($familias as $familia){
+					echo "<option>".$familia['familia']."</option>";
+				}
+			echo"</select>";
+			}
+			echo "<span class=\"error\">".$msgError."</span>
 		  </p>";
 	echo "<p>
 			<input type=\"submit\" class=\"btn btn-primary\" name=\"".$btn."\" value=\"Aceptar\">
