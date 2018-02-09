@@ -1,8 +1,9 @@
 <?php
 require_once "ConnectDB.php";
-class ModelCategoria{
+class ModelCategoria 
+{
 	private $_mngDB;
-
+	
 	public function __construct() {
 		try {
 			$conexion = new ConnectDB();
@@ -12,8 +13,8 @@ class ModelCategoria{
 			die();
 		}
 	}
-
-	/*Devuelve el número total de columnas*/
+	
+	//Devuelve el número total de columnas
 	public function numCategorias() {
 		$result = false;
 		try {
@@ -27,12 +28,12 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 	//Función que devuelve todas las categorias
 	public function getCategorias() {
 		$result = false;
 		try {
-			$sql = 'SELECT `categoria` FROM `categorias`';
+			$sql = 'SELECT * FROM `categorias`';
 			$query = $this->_mngDB->prepare($sql);
 			$query->execute();
 			$result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -42,7 +43,22 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
+	//Función que devuelve todas las familias
+	public function getFamilias() {
+		$result = false;
+		try {
+			$sql = 'SELECT familia FROM `familias`';
+			$query = $this->_mngDB->prepare($sql);
+			$query->execute();
+			$result = $query->fetchAll(PDO::FETCH_ASSOC);
+			$this->_mngDB = null;
+		} catch (PDOException $e) {
+			$e->getMessage();
+		}
+		return $result;
+	}
+	
 	//Función para paginado
 	public function getCategoriasPag($from_record_num, $records_per_page) {
 		$result = false;
@@ -57,7 +73,7 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 	//Función que devuelve una categoria
 	public function getCategoria($categoria) { //Recibe como parámetro la clave primaria
 		$result = false;
@@ -73,7 +89,7 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 	//Función para eliminar una categoria
 	public function delCategoria($categoria) {
 		$result = false;
@@ -88,14 +104,13 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 	//Función para insertar una categoria
-	public function insCategoria($valores, $familia='random') { //Recibe como parámetro un array de valores
+	public function insCategoria($valores) { //Recibe como parámetro un array de valores
 		try {
-			$sql = 'INSERT INTO `categorias`(`categoria`, `familia`) VALUES (:categoria, :familia)';
+			$sql = 'INSERT INTO `categorias`(`categoria`) VALUES (:categoria)';
 			$query = $this->_mngDB->prepare($sql);
 			$query->bindParam('categoria', $valores['categoria']);
-			$query->bindParam('familia', $familia);
 			$result = $query->execute();
 			$this->_mngDB = null;
 		} catch (PDOException $e) {
@@ -103,14 +118,16 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 	//Función para editar una categoria
 	public function updCategorias($oldCategoria, $valores) {
 		try {
 			$newCategoria = $valores['categoria'];
-			$sql = 'UPDATE `categorias` SET `categoria` = :newcategoria WHERE `categoria` = :categoria';
+			$newFamilia = $valores['familia'];
+			$sql = 'UPDATE `categorias` SET `categoria` = :newcategoria, `familia` = :newFamilia WHERE `categoria` = :categoria';
 			$query = $this->_mngDB->prepare($sql);
 			$query->bindParam('newcategoria', $newCategoria);
+			$query->bindParam('newFamilia', $newFamilia);
 			$query->bindParam('categoria', $oldCategoria);
 			$result = $query->execute();
 			$this->_mngDB = null;
@@ -119,7 +136,7 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 	//Función para la búsqueda de categorías
 	public function buscarCategorias($patron) {
 		$result = false;
@@ -134,5 +151,5 @@ class ModelCategoria{
 		}
 		return $result;
 	}
-
+	
 }
