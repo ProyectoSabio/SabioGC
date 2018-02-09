@@ -1,5 +1,4 @@
 <?php
-
 if ($_SESSION['perfil'] != "admin")
 	header("Location: ./index.php");
 if (!isset($_SESSION['modCategoria'])) {
@@ -8,14 +7,21 @@ if (!isset($_SESSION['modCategoria'])) {
 
 require_once "./includes/ModelCategoria.php";
 require_once "./funciones/limpiarCadena.php";
+
 echo "<script src=\"./js/searchCat.js\"></script>";
 
 $error = false;
 $msgError = "";
 $nuevaCategoria = "";
+$nuevaFamilia = "";
+
 
 if (!isset($_GET['categoria'])) {
 	$_GET['categoria'] = "";
+}
+
+if (!isset($_GET['familia'])) {
+	$_GET['familia'] = "";
 }
 
 if (isset($_SESSION['msgError']) && isset($_GET['accion'])) {
@@ -27,6 +33,7 @@ if (isset($_GET['accion'])) {
 	if ($_GET['accion'] == "editar") {
 		$_SESSION['modCategoria'] = $_GET['categoria'];
 		$nuevaCategoria = $_GET['categoria'];
+		$nuevaFamilia = $_GET['familia'];
 		$accion = "Editar categoría";
 		$btn = "editar";
 	} else if ($_GET['accion'] == "eliminar") {
@@ -45,6 +52,7 @@ if (isset($_POST['annadir'])) {
 		$msgError = "Categoría no válida.";
 		$error = true;
 	} else {
+		$nuevaFamilia = $_POST['familia'];
 		$nuevaCategoria = limpiarCadena($_POST['categoria']);
 		if (!preg_match("/^[a-zA-ZáéíóúñÁÉÍÓÚÑ\s]+$/",$nuevaCategoria)) {
 			$msgError = "Formato de categoría no válido, sólo se permiten letras.";
@@ -73,10 +81,10 @@ if (isset($_POST['annadir'])) {
 	}
 	if (!$error) {
 		$objCategoria = new ModelCategoria();
-		$objCategoria->updCategorias($_SESSION['modCategoria'], array('categoria'=>$nuevaCategoria));
+		$objCategoria->updCategorias($_SESSION['modCategoria'], array('categoria'=>$nuevaCategoria, 'familia'=>$_POST['familias'] ));
 		$objCategoria = null;
 		unset($_SESSION['modCategoria']);
-		header("Location: ./index.php?page=categoria");
+		//header("Location: ./index.php?page=categoria");
 	} else {
 		$_SESSION['msgError'] = $msgError;
 		header("Location: ./index.php?page=categoria&categoria=".$_SESSION['modCategoria']."&accion=editar");
@@ -109,31 +117,40 @@ if (!isset($_GET['accion'])) {
 	$categoria = null;
 	echo "<div id=\"txtHint\">";
 	echo "<table class=\"table table-hover table-striped\">
-			<th class=\"text-center\">Nombre</th><th colspan=\"2\" class=\"text-center\">Opciones</th>";
+			<th class=\"text-center\">Nombre</th><th class=\"text-center\">Familia</th><th class=\"text-center\">Opciones</th>";
 	foreach ($resultado as $key => $value) {
 		echo "<tr>";
-		echo "<td>".$value['categoria']."</td><td><a href=\"./index.php?page=categoria&categoria=".$value['categoria']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=categoria&categoria=".$value['categoria']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a></td>";
+		echo "<td>".$value['categoria']."</td><td>".$value['familia']."</td><td><a href=\"./index.php?page=categoria&categoria=".$value['categoria']."&familia=".$value['familia']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=categoria&categoria=".$value['categoria']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a></td>";
 		echo "</tr>";
+		
 	}
+	
 	echo "</table>";
 	echo "</div>";
 }
 
 if (isset($_GET['accion']) && ($_GET['accion'] == "annadir" || $_GET['accion'] == "editar")) {
+	$categoria = new ModelCategoria();
+	$resultado = $categoria->getFamilias();
 	echo "<form method=\"post\" action=\"" . htmlspecialchars('./index.php?page=categoria') . "\">";
 	echo "<div class=\"container\">";
 	echo "<h3>" . $accion . "</h3>";
 	echo "<p>
 			<label>Categoría</label>
-			<input type=\"text\" class=\"form-control\" name=\"categoria\" value=\"".$nuevaCategoria."\" placeholder=\"Ej. Deportes\">";
-			if($_GET['accion'] == "annadir"){
-				echo "<select>";
-				foreach($familias as $familia){
-					echo "<option>".$familia['familia']."</option>";
+			<input type=\"text\" class=\"form-control\" name=\"categoria\" value=\"".$nuevaCategoria."\" placeholder=\"Ej. Deportes\">
+			<span class=\"error\">".$msgError."</span>
+			<select class=\"form-control\" name=\"familias\">";
+
+				foreach ($resultado as $key => $value) {
+					if ($value['familia'] == $nuevaFamilia) {
+						echo "<option  name=\"familia\" value=\"".$value['familia']."\" selected>".$value['familia']."</option>";
+					}
+					else {
+						echo "<option  name=\"familia\" value=\"".$value['familia']."\">".$value['familia']."</option>";
+					}	
 				}
-			echo"</select>";
-			}
-			echo "<span class=\"error\">".$msgError."</span>
+
+			echo "</select>
 		  </p>";
 	echo "<p>
 			<input type=\"submit\" class=\"btn btn-primary\" name=\"".$btn."\" value=\"Aceptar\">
