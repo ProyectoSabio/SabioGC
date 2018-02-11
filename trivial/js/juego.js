@@ -20,8 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var btnSiguiente = document.getElementById("siguiente");
 
 
-	//asignacion de evento click
-	for (var i = 0; i < botones.length; i++) {
+	for (let i = 0; i < botones.length; i++) {
 		botones[i].addEventListener("click", comprobar);
 	};
 
@@ -57,7 +56,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	function comprobarClave(){
 		let passwordUser = $(".clave").val();
 		if( passwordUser == password){
-			// Que pazaa
+			$.each($('.jugador'),function(){
+				if($(this).css("background-color")!= 'rgb(238, 238, 238)'){
+					console.log($(this).text());
+				}
+			});
 			$('#modal3').closeModal();
 			siguientePregunta();
 		}
@@ -108,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				$(panelJugadores[jugadores - 1]).addClass("desactivado");
 				$(panelJugadores[player - 1]).removeClass("desactivado");
 				$(panelJugadores[player - 1]).addClass("jugador-1");
+				// clase jugando
 				break;
 			case 2:
 				$(panelJugadores[player - 2]).removeClass("jugador-1");
@@ -178,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function sacarCategoria() {
-		var categoriaVacia = true;
+		let categoriaVacia = true;
 		do {
 			categoria = Math.floor(Math.random() * categorias.length);
 			if (arrayResult[categoria].length > 0) {
