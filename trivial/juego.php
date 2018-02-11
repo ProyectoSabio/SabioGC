@@ -3,7 +3,7 @@ session_start();
   if (!isset($_POST['jugadores'])) {
     header('Location: ./configuracionJuego.php');
   }
-
+  print_r($_SESSION['juego']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,10 +89,18 @@ session_start();
         <div id="modal3" class=modal>
         	<div class="modal-content">
         		<form action="./juego.php" method="post" accept-charset="utf-8">
-        			<label>Contraseña del juego<input type="password"></input></label>    
-        			<input type="button" id="enviar" value="enviar"> 			
+        			<label>Contraseña del juego<input type="password" class="clave"></input></label>    
+        			<input type="button" class="enviar" value="enviar"> 			
         		</form>
         	</div>
+        </div>
+
+        <div id="modal4" class=modal>
+          <div class="modal-content">
+            <form action="./juego.php" method="post" accept-charset="utf-8">
+              <p class="validacion"></p>  
+            </form>
+          </div>
         </div>
 
 

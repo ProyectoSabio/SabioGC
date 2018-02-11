@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	var ruleta = document.getElementById('ruleta');
 	var btnAnular = document.getElementById("anular");
 	var btnSiguiente = document.getElementById("siguiente");
+
+
 	//asignacion de evento click
 	for (var i = 0; i < botones.length; i++) {
 		botones[i].addEventListener("click", comprobar);
@@ -34,9 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	//Inicio del juego
 
+	$(".enviar").click(comprobarClave);
+
 	btnAnular.addEventListener('click', pedirPasswd);
 
 	btnSiguiente.addEventListener('click', siguientePregunta);
+
+
 
 	$("#inicial").openModal({
 		dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -47,6 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		complete: function() {} // Callback for Modal close);
 
 	});
+
+	function comprobarClave(){
+		let clave = <?php $_SESSION['juego'][0]['password'] ?>
+		let claveUsuario = $(".clave").html();
+		console.log('clave: ');
+		console.log('usuario: ');
+	}
 
 	function pedirPasswd(){
 		$("#modal3").openModal({

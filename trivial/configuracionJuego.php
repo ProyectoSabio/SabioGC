@@ -26,7 +26,7 @@ session_start();
 			$_SESSION['juego'] = $preguntas->getJuego($_GET['juego']);
 			//sacar numero de preguntas
 		}
-
+		print_r($_SESSION['juego']);
 	?>
 	<div id="formulario" class="card"><!---->
 		<h2>Una pregunta en la Mochila</h2>
