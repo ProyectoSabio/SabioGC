@@ -55,10 +55,16 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 
 	function comprobarClave(){
-		let clave = <?php $_SESSION['juego'][0]['password'] ?>
-		let claveUsuario = $(".clave").html();
-		console.log('clave: ');
-		console.log('usuario: ');
+		let passwordUser = $(".clave").val();
+		if( passwordUser == password){
+			// Que pazaa
+			$('#modal3').closeModal();
+			siguientePregunta();
+		}
+		else{
+			
+
+		}
 	}
 
 	function pedirPasswd(){
