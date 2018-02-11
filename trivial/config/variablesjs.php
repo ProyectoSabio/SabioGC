@@ -7,4 +7,5 @@
 	var rondas = <?php echo json_encode(RONDAS);?>;
 	var listaJugadores = <?php echo json_encode($jugadores)?>;
 	var preguntasTotales = <?php echo json_encode(RONDAS);?>*jugadores;
+	var password = <?php echo json_encode($_SESSION['juego'][0]['password']); ?>;
 </script>
