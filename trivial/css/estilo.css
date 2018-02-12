@@ -253,7 +253,9 @@ body .findePagina button{
 #anular, #siguiente{
   display: none; /**/
 }
-
+#modal3{
+  
+}
 #modal3 label{
   display: block;
 }
