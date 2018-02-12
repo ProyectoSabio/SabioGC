@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	var ruleta = document.getElementById('ruleta');
 	var btnAnular = document.getElementById("anular");
 	var btnSiguiente = document.getElementById("siguiente");
+	var respuesta = "";
 
 
 	for (let i = 0; i < botones.length; i++) {
@@ -55,10 +56,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	function comprobarClave(){
 		let passwordUser = $(".clave").val();
+		let puntosJugador;
 		if( passwordUser == password){
 			$.each($('.jugador'),function(){
+				// Seleccionamos el marcador del jugador que está activo.
 				if($(this).css("background-color")!= 'rgb(238, 238, 238)'){
-					console.log($(this).text());
+					puntosJugador = parseInt($(this).find(".puntos").html()); // Extraemos los puntos.
+					if(respuesta == "correcta"){
+						puntosJugador = puntosJugador - 1;						
+					}else{
+						puntosJugador = puntosJugador + 1;
+					}
+					$(this).find(".puntos").html(puntosJugador.toString());
 				}
 			});
 			$('#modal3').closeModal();
@@ -87,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	 * Cierra la ventana e inicia la ruleta de nuevo
 	 */
 	function siguientePregunta(){	
+		respuesta = "";
 		$("#modal1").closeModal();	
 		setTimeout(ejecutarJuego, 1500);
 		btnAnular.style = "display: none;";
@@ -234,6 +244,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			clickado = true;
 			preguntasTotales--;
 			if (this.innerHTML == respuestaCorrecta) {
+				respuesta = "correcta";
 				for (var i = 0; i < jugadores; i++) {
 					if ((i + 1) == player) {
 						puntos[i].innerHTML = parseInt(puntos[i].innerHTML) + 1;
@@ -242,6 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				efectoRespuestaValida(this);
 				setTimeout(revisarPreguntas, 3000);
 			} else {
+				respuesta = "incorrecta";
 				efectoRespuestaInvalida(this);
 				setTimeout(revisarPreguntas, 3000);
 
