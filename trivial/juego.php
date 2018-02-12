@@ -88,9 +88,7 @@ session_start();
         		<form action="./juego.php" method="post" accept-charset="utf-8">
         			<label>Contraseña del juego<input type="password" class="clave"></input></label>
               <span class="error"></span>
-        			<input type="button" class="enviar" value="enviar">
-              <span class="error"></span>
-        			<input type="button" class="enviar" value="Enviar">
+        	  <input type="button" class="enviar" value="Enviar">
               <input type="button" class="close" value="Cancelar">
 
         		</form>
