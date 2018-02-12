@@ -8,7 +8,7 @@
 }
 
 #cabecera h2{
-  margin: 5% auto; 
+  margin: 5% auto;
 }
 
 #cabecera #ruleta{
@@ -58,7 +58,7 @@
   flex: 999;
   order: 2;
   vertical-align: top;
-  text-align: center; 
+  text-align: center;
   padding: 0px 10px 0px;
   font-size: 33px;
   background-color: white;
@@ -253,30 +253,3 @@ body .findePagina button{
 #anular, #siguiente{
   display: none; /**/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

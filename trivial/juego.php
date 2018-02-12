@@ -20,14 +20,14 @@ session_start();
   include("./config/variablesjs.php");
   ?>
   <script type="text/javascript" src="./js/juego.js"></script>
-  <title>Una pregunta en la mochila</title> 
+  <title>Una pregunta en la mochila</title>
 </head>
 <body>
   <div class="row">
     <div class="col s3">
       <div class="jugadores">
         <?php
-        for ($i=0; $i <PLAYERS; $i++) { 
+        for ($i=0; $i <PLAYERS; $i++) {
             echo "<div class=\"jugador card desactivado\">";
               echo"<header>";
                 echo "<i class=\"medium material-icons\">".$jugadores[$i]["Imagen"]."</i>";
@@ -38,7 +38,7 @@ session_start();
               echo"</footer>";
             echo"</div>";
         }
-        ?>  
+        ?>
       </div>
     </div>
   <main>
@@ -47,18 +47,15 @@ session_start();
         <h2 class="center-align" id="ronda">Ronda 1/X</h2>
         <h3 class="center-align" id="ruleta">Categoria</h3>
       </header>
-       <!-- <div id="mapa"><img src="./img/espana2.png" alt="Mapa de España"></div>-->
-        <!-- Modal Trigger -->
-        <!-- Modal Structure -->
-        
+
         <div id="modal1" class="modal"> <!--Div con pregunta-->
-        <form action="juego.php" method="post" accept-charset="utf-8">      
+        <form action="juego.php" method="post" accept-charset="utf-8">
 	          <div class="modal-content">
 		            <h4 id="titulo"></h4>
 		            <input type="button" id="anular" value="Anular">
 		            <div id="objeto" class="objeto"></div>
 		            <ul class="respuestas">
-		              <?php 
+		              <?php
 		                for ($i = 0; $i<NRESPUESTAS;$i++){
 		                 echo"<a  href='' ><li name='resp'></li></a>";
 		                }
@@ -90,14 +87,14 @@ session_start();
         	<div class="modal-content">
         		<form action="./juego.php" method="post" accept-charset="utf-8">
         			<label>Contraseña del juego<input type="password" class="clave"></input></label>
-              <span class="error"></span> 
-        			<input type="button" class="enviar" value="enviar"> 			
+              <span class="error"></span>
+        			<input type="button" class="enviar" value="enviar">
         		</form>
         	</div>
         </div>
         <div id="inicial" class="modal">
           <div class="modal-content">
-            <div id="empezar"> 
+            <div id="empezar">
                 <input class="btn botonEmpezar" type="button" value="EMPEZAR" id="jugar">
             </div>
           </div>
@@ -107,7 +104,10 @@ session_start();
 </div>
 
   <footer class="findePagina">
-    <p>Desarrollado por <b><a href="https://github.com/rafaelnavarroprieto">Rafael Navarro</a></b> y <b><a href="https://github.com/infordur">Pablo Durán</a></b>.</p><button class="reiniciar waves-effect waves-light btn grey lighten-3">Reiniciar</button>
+    <button class="reiniciar waves-effect waves-light btn grey lighten-3">Reiniciar</button>
+    <p>Desarrollado por <b><a href="https://github.com/rafaelnavarroprieto">Rafael Navarro</a></b> y <b><a href="https://github.com/infordur">Pablo Durán</a></b>.</p>
+    <p>Actualización de <b><a href="https://github.com/NievesBorrero"> Nieves Borrero</a></b>, <b><a href="https://github.com/pabloleonalcaide">Pablo León</a></b> y <b><a href="https://github.com/Vsevillano">Victoriano Sevillano</a></b> </p>
+
   </footer>
 </body>
 </html>
