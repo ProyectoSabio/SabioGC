@@ -20,7 +20,7 @@ session_start();
 		require_once './class/Preguntas.php';
 		$preguntas = new Preguntas();
 
-		if(!isset($_GET) || empty($_GET)){
+		if(!isset($_GET) || empty($_GET)){ // Control
 			header('Location:index.php');
 		}else{
 			$_SESSION['juego'] = $preguntas->getJuego($_GET['juego']);
