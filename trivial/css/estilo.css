@@ -253,3 +253,11 @@ body .findePagina button{
 #anular, #siguiente{
   display: none; /**/
 }
+
+#modal3 label{
+  display: block;
+}
+#modal3 input[type="password"]{
+  width: 30%;
+  margin-left: 10px;
+}
