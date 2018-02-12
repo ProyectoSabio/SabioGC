@@ -38,6 +38,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	$(".enviar").click(comprobarClave);
 
+	$(".close").click(function(){
+		$('#modal3').closeModal();
+	});
+
 	btnAnular.addEventListener('click', pedirPasswd);
 
 	btnSiguiente.addEventListener('click', siguientePregunta);
@@ -54,6 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	});
 
+/**
+ * Comprueba si la contrraseña introducida por el usuario es correcta. En ese caso anula la jugada.
+ */
 	function comprobarClave(){
 		let passwordUser = $(".clave").val();
 		let puntosJugador;
@@ -74,8 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			siguientePregunta();
 		}
 		else{
-			
-
+			$('.error').html("Password incorrecta");
 		}
 	}
 
@@ -95,7 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	/**
 	 * Cierra la ventana e inicia la ruleta de nuevo
 	 */
-	function siguientePregunta(){	
+	function siguientePregunta(){
+		document.getElementById('ganadores').innerHTML = comprobarGanador();
 		respuesta = "";
 		$("#modal1").closeModal();	
 		setTimeout(ejecutarJuego, 1500);
@@ -146,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function ejecutarRuleta(i) {
-		if (i < 70) {  //Comprobar esto <<<<<<<<<< Huele a trampa
+		if (i < 70) {  
 			i++;
 			categoriaRuleta = categorias[Math.floor(i % categorias.length)];
 			ruleta.innerHTML = categoriaRuleta;
@@ -284,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				complete: function() {} // Callback for Modal close);
 
 			});
-			document.getElementById('ganadores').innerHTML = comprobarGanador();
+			
 			$('body').append('<audio src="./audios/victory.wav" controls autoplay loop  hidden></audio>');
 		}
 	}
