@@ -89,6 +89,10 @@ session_start();
         			<label>Contraseña del juego<input type="password" class="clave"></input></label>
               <span class="error"></span>
         			<input type="button" class="enviar" value="enviar">
+              <span class="error"></span>
+        			<input type="button" class="enviar" value="Enviar">
+              <input type="button" class="close" value="Cancelar">
+
         		</form>
         	</div>
         </div>
