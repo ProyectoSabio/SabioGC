@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				if($(this).css("background-color")!= 'rgb(238, 238, 238)'){
 					puntosJugador = parseInt($(this).find(".puntos").html()); // Extraemos los puntos.
 					if(respuesta == "correcta"){
-						puntosJugador = puntosJugador - 1;						
+						puntosJugador = puntosJugador - 1;
 					}else{
 						puntosJugador = puntosJugador + 1;
 					}
@@ -84,7 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
 			$('.error').html("Password incorrecta");
 		}
 	}
-
+/**
+* Ventana para solicitar contraseña de juego en caso de anular pregunta
+*/
 	function pedirPasswd(){
 		$("#modal3").openModal({
 			dismissible: false, // Modal can be dismissed by clicking outside of the modal
@@ -93,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			out_duration: 200, // Transition out duration
 			ready: function() {}, // Callback for Modal open
 			complete: function() {
-					
+
 				} // Callback for Modal close);
 
 		});
@@ -104,10 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	function siguientePregunta(){
 		document.getElementById('ganadores').innerHTML = comprobarGanador();
 		respuesta = "";
-		$("#modal1").closeModal();	
+		$("#modal1").closeModal();
 		setTimeout(ejecutarJuego, 1500);
 		btnAnular.style = "display: none;";
-		this.style = "display: none;"; // botón del evento: btnSiguiente
+		btnSiguiente.style = "display: none;"; // botón del evento: btnSiguiente
 	}
 
 	function ejecutarJuego() {
@@ -153,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function ejecutarRuleta(i) {
-		if (i < 70) {  
+		if (i < 70) {
 			i++;
 			categoriaRuleta = categorias[Math.floor(i % categorias.length)];
 			ruleta.innerHTML = categoriaRuleta;
@@ -291,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				complete: function() {} // Callback for Modal close);
 
 			});
-			
+
 			$('body').append('<audio src="./audios/victory.wav" controls autoplay loop  hidden></audio>');
 		}
 	}
@@ -321,9 +323,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 	function comprobarGanador() {
-		var ganador = "";
-		var puntuacion = -1;
-		for (var i = 0; i < jugadores; i++) {
+		let ganador = "";
+		let puntuacion = -1;
+		for (let i = 0; i < jugadores; i++) {
 			if (parseInt(puntos[i].innerHTML) > puntuacion) {
 				ganador = "<div class=\"ganador\"><i class=\"material-icons\">" + listaJugadores[i]["Imagen"] + "</i>" + listaJugadores[i]["Nombre"] + "</div>";
 				puntuacion = puntos[i].innerHTML;
