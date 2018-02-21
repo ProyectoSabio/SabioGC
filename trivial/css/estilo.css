@@ -218,7 +218,7 @@ main h3{
 
 
 body{
-  background: url(../img/fondo1.jpg);
+  background-color: rgba(0,0,0,0.2);
   background: cover;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -254,7 +254,7 @@ body .findePagina button{
   display: none; /**/
 }
 #modal3{
-  
+
 }
 #modal3 label{
   display: block;

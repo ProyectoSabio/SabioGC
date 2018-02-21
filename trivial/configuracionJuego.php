@@ -26,17 +26,15 @@ session_start();
 			$_SESSION['juego'] = $preguntas->getJuego($_GET['juego']);
 			//sacar numero de preguntas
 		}
-		print_r($_SESSION['juego']);
 	?>
 	<div id="formulario" class="card"><!---->
-		<h2>Una pregunta en la Mochila</h2>
+		<h2>Preparando la partida</h2>
 		<form action="juego.php" method="post">
-
 				<div class="fila">
 					<input type="text" name="rondas" id="rondas" placeholder="Nº- Rondas"><span id="rondaS"></span>
 
 					<select name="numJugadores" id="numJugadores">
-									<option value="">Nº- jugadores</option>
+							<option value="">Nº- jugadores</option>
 						<?php
 							for ($i=1; $i <4 ; $i++) {
 								echo "<option value=".($i+1).">".($i+1)."</option>";
@@ -45,9 +43,8 @@ session_start();
 					</select>
 				</div>
 				<div id="jugadores">
-
 				</div>
-				<input  type="button" value="Jugar" id="jugar" name="jugar">
+				<input type="button" value="Jugar" id="jugar" name="jugar">
 
 		</form>
 	</div>

@@ -1,9 +1,8 @@
 <?php
 session_start();
-  if (!isset($_POST['jugadores'])) {
+  if (!isset($_POST['jugadores'])) { //Control
     header('Location: ./configuracionJuego.php');
   }
-  print_r($_SESSION['juego']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +19,7 @@ session_start();
   include("./config/variablesjs.php");
   ?>
   <script type="text/javascript" src="./js/juego.js"></script>
-  <title>Una pregunta en la mochila</title>
+  <title>Trivial GC</title>
 </head>
 <body>
   <div class="row">

@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	btnSiguiente.addEventListener('click', siguientePregunta);
 
-
-
 	$("#inicial").openModal({
 		dismissible: false, // Modal can be dismissed by clicking outside of the modal
 		opacity: .5, // Opacity of modal background
@@ -333,8 +331,6 @@ document.addEventListener('DOMContentLoaded', function() {
 				ganador += "<div class=\"ganador\"><i class=\"material-icons\">" + listaJugadores[i]["Imagen"] + "</i>" + listaJugadores[i]["Nombre"] + "</div>";
 			}
 		};
-
-
 		return ganador;
 	}
 });
