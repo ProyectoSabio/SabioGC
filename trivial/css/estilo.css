@@ -2,19 +2,15 @@
   padding: 0px;
   margin: 0px;
 }
-
 #cabecera{
   margin-top:10%;
 }
-
 #cabecera h2{
   margin: 5% auto;
 }
-
 #cabecera #ruleta{
   padding: 3%;
 }
-
 .jugadores .jugador{
   display: flex;
   flex-flow: column;
@@ -23,27 +19,21 @@
   margin:10px 10px 0px;
   transition: 1s all;
 }
-
 .jugadores .jugador-1{
   background-color: #304ffe;
 }
-
 .jugadores .jugador-2{
   background-color: #00bfa5
 }
-
 .jugadores .jugador-3{
   background-color: #eeff41;
 }
-
 .jugadores .jugador-4{
   background-color: #ff6d00;
 }
-
 .desactivado{
   background-color: #eeeeee;
 }
-
 .jugadores .jugador header{
   display: flex;
   flex-flow: row;
@@ -171,7 +161,6 @@ main h3{
   width: 90%;
   margin: 20px;
 }
-
 
 #fin{
   display: flex;

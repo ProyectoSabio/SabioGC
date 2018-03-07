@@ -271,7 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	}
 
-
 	function revisarPreguntas() {
 		if (preguntasTotales > 0) {
 			if (player == jugadores) {

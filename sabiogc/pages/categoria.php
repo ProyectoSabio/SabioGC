@@ -61,7 +61,7 @@ if (isset($_POST['annadir'])) {
 	}
 	if (!$error) {
 		$objCategoria = new ModelCategoria();
-		$objCategoria->insCategoria(array('categoria'=>$nuevaCategoria));
+		$objCategoria->insCategoria(array('categoria'=>$nuevaCategoria,'familia'=>$_POST['familias']));
 		$objCategoria = null;
 		header("Location: ./index.php?page=categoria");
 	} else {
@@ -122,9 +122,9 @@ if (!isset($_GET['accion'])) {
 		echo "<tr>";
 		echo "<td>".$value['categoria']."</td><td>".$value['familia']."</td><td><a href=\"./index.php?page=categoria&categoria=".$value['categoria']."&familia=".$value['familia']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=categoria&categoria=".$value['categoria']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a></td>";
 		echo "</tr>";
-		
+
 	}
-	
+
 	echo "</table>";
 	echo "</div>";
 }
@@ -147,9 +147,8 @@ if (isset($_GET['accion']) && ($_GET['accion'] == "annadir" || $_GET['accion'] =
 					}
 					else {
 						echo "<option  name=\"familia\" value=\"".$value['familia']."\">".$value['familia']."</option>";
-					}	
+					}
 				}
-
 			echo "</select>
 		  </p>";
 	echo "<p>

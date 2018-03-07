@@ -39,11 +39,10 @@ if (isset($_POST['login'])) {
 function actualizaToken($usuario){
 	$experto = new ModelExperto();
 	if($experto->updExpertoToken('literatura')){
-		
+
 	}else{
 		echo 'Se ha producido un error';
 	}
-
 
 }
 echo "<form method=\"post\" action=\"" . htmlspecialchars('./index.php?page=recuperaPassword') . "\">
@@ -57,12 +56,8 @@ echo "	<div class=\"form-group\">
 		<input type=\"submit\" class=\"btn btn-primary\" name=\"login\" value=\"Recuperar\">
 		<a class=\"btn btn-primary\" href='./index.php'>Volver</a>
 		<br />
-
 	</div>
 	</form>";
 
 ob_end_flush();
-
-
-
 ?>
