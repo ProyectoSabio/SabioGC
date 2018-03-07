@@ -108,12 +108,11 @@ class ModelCategoria
 	//Función para insertar una categoria
 	public function insCategoria($valores) { //Recibe como parámetro un array de valores
 		try {
-			$sql = 'INSERT INTO `categorias`(`categoria` `familia`) VALUES (:categoria :familia)';
+			$sql = 'INSERT INTO `categorias`(`categoria`, `familia`) VALUES (:categoria, :familia)';
 			$query = $this->_mngDB->prepare($sql);
 			$query->bindParam('categoria', $valores['categoria']);
 			$query->bindParam('familia', $valores['familia']);
 			$result = $query->execute();
-			$this->_mngDB = null;
 		} catch (PDOException $e) {
 			$e->getMessage();
 		}

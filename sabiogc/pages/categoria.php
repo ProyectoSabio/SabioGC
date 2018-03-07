@@ -61,9 +61,10 @@ if (isset($_POST['annadir'])) {
 	}
 	if (!$error) {
 		$objCategoria = new ModelCategoria();
+		print_r($_POST['familia']);
 		$objCategoria->insCategoria(array('categoria'=>$nuevaCategoria,'familia'=>$_POST['familias']));
 		$objCategoria = null;
-		header("Location: ./index.php?page=categoria");
+		//header("Location: ./index.php?page=categoria");
 	} else {
 		$_SESSION['msgError'] = $msgError;
 		header("Location: ./index.php?page=categoria&accion=annadir");
