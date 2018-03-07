@@ -14,7 +14,7 @@ class ModelExperto
 		}
 	}
 
-	
+
 	//Función que devuelve todos los expertos
 	public function getExpertos() {
 		$result = false;
@@ -106,6 +106,8 @@ class ModelExperto
 
 	//Función para insertar un experto
 	public function insExperto($valores, $categorias) {
+		$token = bin2hex(random_bytes(8));
+		$caducidad = date("Y-m-d H:i:s", strtotime(tomorrow));
 		try {
 			$sql = 'SELECT COUNT(`usuario`) AS filU, COUNT(`email`) AS filE FROM `expertos` WHERE UPPER(`usuario`) = :usuario OR UPPER(`email`) = :email';
 			$query = $this->_mngDB->prepare($sql);
@@ -116,12 +118,16 @@ class ModelExperto
 			if ($result[0]['filU'] > 0 || $result[0]['filE'] > 0) {
 				$result = "El usuario ya existe.";
 			} else {
-				$sql = 'INSERT INTO `expertos`(`nombre`,`usuario`,`password`,`email`) VALUES (:nombre,:usuario,:password,:email)';
+				$sql = 'INSERT INTO `expertos`(`nombre`,`usuario`,`password`,`email`,`token`,`caducidadToken`)
+				VALUES (:nombre,:usuario,:password,:email,:token,:caducidadToken)';
 				$query = $this->_mngDB->prepare($sql);
 				$query->bindParam('nombre', $valores['nombre']);
 				$query->bindParam('usuario', $valores['usuario']);
 				$query->bindParam('password', $valores['password']);
 				$query->bindParam('email', $valores['email']);
+				$query->bindParam('token', $token);
+				$query->bindParam('caducidadToken', $caducidad);
+
 				$result = $query->execute();
 				$this->asignarCategorias($valores['usuario'], $categorias);
 			}
@@ -134,6 +140,8 @@ class ModelExperto
 
 	//Función para editar un experto
 	public function updExperto($oldExperto, $valores, $categorias) {
+		$token = bin2hex(random_bytes(8));
+		$caducidad = date("Y-m-d H:i:s", strtotime(tomorrow));
 		try {
 			$sql = 'UPDATE `expertos` SET `nombre`=:nombre,`usuario`=:usuario,`password`=:password,`email`=:email WHERE `usuario` = :oldUsuario';
 			$query = $this->_mngDB->prepare($sql);
@@ -171,7 +179,8 @@ class ModelExperto
 	public function asignarCategorias($usuario, $categorias) {
 		try {
 			if (empty($categorias)) {
-				$sql = 'SELECT `expcategorias`.`id` FROM `expcategorias` INNER JOIN `expertos` ON `expcategorias`.`idExperto` = `expertos`.`id` WHERE `expertos`.`usuario` = :usuario';
+				$sql = 'SELECT `expcategorias`.`id` FROM `expcategorias` INNER JOIN `expertos`
+				ON `expcategorias`.`idExperto` = `expertos`.`id` WHERE `expertos`.`usuario` = :usuario';
 				$query = $this->_mngDB->prepare($sql);
 				$query->bindParam('usuario', $usuario);
 				$query->execute();
@@ -182,7 +191,9 @@ class ModelExperto
 				$query->execute();
 			} else {
 				$categoriasExistentes = array();
-				$sql = 'SELECT `expcategorias`.`idExperto`, `expcategorias`.`categoria` FROM `expcategorias` INNER JOIN `expertos` ON `expcategorias`.`idExperto` = `expertos`.`id` WHERE `expertos`.`usuario` = :usuario';
+				$sql = 'SELECT `expcategorias`.`idExperto`, `expcategorias`.`categoria` FROM
+				`expcategorias` INNER JOIN `expertos` ON `expcategorias`.`idExperto` = `expertos`.`id`
+				WHERE `expertos`.`usuario` = :usuario';
 				$query = $this->_mngDB->prepare($sql);
 				$query->bindParam('usuario', $usuario);
 				$query->execute();

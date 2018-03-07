@@ -60,6 +60,8 @@ if (isset($_POST['annadir']) || isset($_POST['editar'])) {
 		if (!$errorN && !$errorU && !$errorP && !$errorPR && !$errorE && !$errorC) {
 			$objExperto = new ModelExperto();
 			$objExperto->insExperto(array('nombre'=>$nombre,'usuario'=>$usuario,'password'=>$password,'email'=>$email), $categorias);
+			$objExperto->updExpertoToken($usuario);
+
 			$objExperto = null;
 			header('Location: ./index.php?page=expertos');
 		}
@@ -114,7 +116,7 @@ if (!isset($_GET['accion'])) {
 				  	echo "<li>".$value1."</li>";
 				  }
 			echo "</ul></td>";
-			echo "<td><a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a>"; 
+			echo "<td><a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=editar\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-pencil\"></span> Editar</a> <a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=eliminar\" class=\"btn btn-danger\"><span class=\"glyphicon glyphicon-remove\"></span> Eliminar</a>";
 			if ($value['estado'] != 'validado') {
 			echo " <a href=\"./index.php?page=expertos&usuario=".$value['usuario']."&accion=validarExp\" class=\"btn btn-warning\"><span class=\"glyphicon glyphicon-ok\"></span> Validar</a>";
 			}
