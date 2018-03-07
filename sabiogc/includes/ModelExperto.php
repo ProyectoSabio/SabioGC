@@ -90,7 +90,7 @@ class ModelExperto
 	//Función para validar un experto
 	public function validaExperto($usuario) {
 		try {
-			$valido = "validado";
+			$valido = 1;
 			$sql = 'UPDATE `expertos` SET `estado`=:valido WHERE `usuario` = :usuario';
 			$query = $this->_mngDB->prepare($sql);
 			$query->bindParam('usuario', $usuario);
