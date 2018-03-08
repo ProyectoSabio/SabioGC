@@ -5,7 +5,9 @@ function subirArchivo($archivo, $ruta) {
     $target_file = $target_dir . basename($_FILES["upload"]["name"]);
     $uploadOk = 1;
     $fileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
+    if($_FILES["upload"]["size"] < 1){
+        $uploadOk = 0;
+    }
     // Check if file already exists
     if (file_exists($target_file)) {
         //echo "Sorry, file already exists.";
@@ -25,7 +27,7 @@ function subirArchivo($archivo, $ruta) {
     }*/
 
     if ($uploadOk == 1) {
-        chmod($_FILES["upload"]["tmp_name"], 777);
+        chmod($_FILES["upload"]["tmp_name"], 0777);
         move_uploaded_file($_FILES["upload"]["tmp_name"], $target_dir.$archivo);
     }
 
