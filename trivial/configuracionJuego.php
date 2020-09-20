@@ -11,7 +11,6 @@ session_start();
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="./js/formulario.js"></script>
-	<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">-->
 	<link rel=stylesheet href="css/portada.css" type="text/css"/>
 	<title>Configuracion</title>
 </head>

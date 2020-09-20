@@ -35,20 +35,6 @@ class ConnectDB
 		}
 	}
 
-	/*public function query($sql, $values=array()) {
-		$_result = false;
-			try {
-			  $result=$this->_mngDB->prepare($sql);
-			  $result->execute($values);
-  			  $_result = $result->fetchAll(PDO::FETCH_ASSOC);
-			} catch (PDOException $e) {
-				printf("Conexión fallida: %s\n", $e->getMessage());
-				exit();
-			}
-
-			return $_result;
-	}*/
-
 	public function rowCount($sql, $values=array()) {
         $_result=false;
 
@@ -86,5 +72,5 @@ class ConnectDB
 			return $_result;
 		}
 	}
-	
+
 }
