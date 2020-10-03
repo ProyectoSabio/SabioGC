@@ -1,3 +1,6 @@
+const { TEAM_NAME } = require("./constants/regexp");
+const { INTEGER_NUMBERS_TEXT } = require("./constants/texts");
+
 document.addEventListener('DOMContentLoaded', function(e) {
 	var selectPlayer = document.getElementById('numJugadores');
 	var bloqueJugadores = document.getElementById('jugadores');
@@ -71,21 +74,17 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		 jugadores = document.getElementsByName('jugadores[]');
 	}
 
-	function validarRonda(value){
-		if (!/[0-9]+/g.test(value)) {
-			spanRondas.innerHTML = "Solo se aceptara números enteros positivos";
-			return false;
-		}
-		spanRondas.innerHTML = "";
-		return true;
+	function setRoundText(value){
+		Number.isInteger(value) ? spanRondas.innerHTML(INTEGER_NUMBERS_TEXT)
+			: spanRondas.innerHTML("")
 	}
 
 	function validarNombreEquipo(value){
-		return /[a-zA-Z(0-9 _-º)?]/g.test(value);
+		return TEAM_NAME.test(value);
 	}
 
 	function validar(){
-		var errorR = validarRonda(rondas.value);
+		setRoundText(rondas.value)
 		var errorJ = Array();
 		for (var i = 0; i < jugadores.length; i++) {
 			errorJ[i] = validarNombreEquipo(jugadores[i].value);
@@ -96,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			}
 		};
 
-		if (!errorR || (errorJ.indexOf(false)!=-1 || errorJ.length==0))
+		if (!Number.isInteger(rondas.value) || (errorJ.indexOf(false)!=-1 || errorJ.length==0))
 			return false;
 		return true;
 	}
